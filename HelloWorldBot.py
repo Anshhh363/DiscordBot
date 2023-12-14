@@ -1,6 +1,10 @@
 import discord
 from db import engine, ServerAuths
 from sqlalchemy.orm import Session
+from dotenv import load_dotenv
+import os
+
+load_dotenv(".env")
 
 intents = discord.Intents(messages=True, message_content=True, guilds=True)
 client = discord.Client(intents=intents)
@@ -42,4 +46,7 @@ async def on_guild_join(guild):
         session.commit()
 
 
-client.run("MTE4NDY0NjU0MDM1OTM4OTMwOA.GTwP9A.UEq1pKvc56TL8K3JgG_DpCQjvgG-p1V2QLtGXA")
+BotToken = os.environ.get("DISCORD_BOT_TOKEN")
+
+
+client.run(BotToken)
